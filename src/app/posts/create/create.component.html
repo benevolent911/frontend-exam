@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="container">
+  <div class="blog-header">
+    <h1 class="blog-title">Public Blog</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="blog-post-title">Create Post</h2>
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Name:</label>
+          <input type="text" formControlName="name" id="name" class="form-control" required>
+          <div *ngIf="postForm.controls.name.invalid && (postForm.controls.name.dirty || postForm.controls.name.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="postForm.controls.name.errors.required">
+              Name is required.
+            </span>
+            <span *ngIf="postForm.controls.name.errors.minlength">
+              Name must be at least 4 characters long.
+            </span>
+            <span *ngIf="postForm.controls.name.errors.pattern">
+              Name must contain characters.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" formControlName="title" id="title" class="form-control" required>
+          <div *ngIf="postForm.controls.title.invalid && (postForm.controls.title.dirty || postForm.controls.title.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="postForm.controls.title.errors.required">
+              Title is required.
+            </span>
+            <span *ngIf="postForm.controls.title.errors.minlength">
+              Title must be at least 4 characters long.
+            </span>
+            <span *ngIf="postForm.controls.title.errors.pattern">
+              Title must contain characters.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="body">Post Content:</label>
+          <textarea class="form-control" rows="6" formControlName="body" id="body" required></textarea>
+          <div *ngIf="postForm.controls.body.invalid && (postForm.controls.body.dirty || postForm.controls.body.touched)"
+            class="alert alert-danger" role="alert">
+            <span *ngIf="postForm.controls.body.errors.required">
+              Post content is required.
+            </span>
+            <span *ngIf="postForm.controls.body.errors.minlength">
+              Title must be at least 10 characters long.
+            </span>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="onMain()" style="float: left;">
+          <span>Back</span>
+        </button>
+        <button type="button" class="btn btn-warning" (click)="clearForm()" style="float: left;">
+          <span>Clear</span>
+        </button>
+        <button type="submit" class="btn btn-success" [disabled]="!postForm.valid" style="float: right;">
+          <span *ngIf="isProcessingRequest"><i class="fa fa-spinner fa-spin"></i></span>
+          <span *ngIf="!isProcessingRequest">Save Post</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

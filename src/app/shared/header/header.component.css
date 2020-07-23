@@ -1,0 +1,7 @@
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #8f7760 !important;
+}
+
+.navbar-right {
+  margin-right: 10px !important;
+}
