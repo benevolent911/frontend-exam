@@ -1,4 +1,18 @@
-# BlogTest
+# frontend-exam
+# Front End Developer Exam (Angular 6) by Erick Rebadeo
+
+### Features
+
+* Home/Posts Page, Edit Post Page, Create Post
+* Edit/delete post
+* Clear form input button in Edit and Create post page
+* Data validation (title, name and post content)
+
+### Includes
+* [Ngx-Bootstrap](https://github.com/valor-software/ngx-bootstrap) for CSS and JQuery plugins
+* [Font Awesome](https://github.com/FortAwesome/Font-Awesome) for Font Awesome Icons
+
+----------------------------------------------------------------------------------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
