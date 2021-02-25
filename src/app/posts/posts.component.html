@@ -5,14 +5,16 @@
   </div>
   <div class="row">
     <div class="col-sm-8 blog-main">
-      <div class="blog-post" *ngFor="let post of posts;">
-        <h2 class="blog-post-title">{{ post.title }}</h2>
-        <p class="blog-post-meta">{{ post.created_at | date:'longDate' }} by {{ post.name }}</p>
-        <p>{{ post.body }}</p>
-        <button type="button" class="btn btn-info" (click)="editPost(post)">
-          Edit Post
-        </button>
-      </div>
+      <ng-container *ngIf="(posts$ | async) as posts">
+        <div class="blog-post" *ngFor="let post of posts;">
+          <h2 class="blog-post-title">{{ post.title }}</h2>
+          <p class="blog-post-meta">{{ post.created_at | date:'longDate' }} by {{ post.name }}</p>
+          <p>{{ post.body }}</p>
+          <button type="button" class="btn btn-info" (click)="editPost(post)">
+            Edit Post
+          </button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
