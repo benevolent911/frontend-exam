@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { DataService } from './../../services/data.service';
-import { Post } from './../../shared/models/post.model';
+import { PostsStore } from './../../services/posts.store';
 
 @Component({
   selector: 'app-create',
@@ -14,21 +13,26 @@ import { Post } from './../../shared/models/post.model';
 export class CreateComponent implements OnInit {
 
   isProcessingRequest: boolean;
-  post: Post;
   postForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
     public router: Router,
-    private dataService: DataService) { }
+    private postsStore: PostsStore) { }
 
   ngOnInit() {
     this.initializePostForm();
   }
 
+  /**
+   * Clear input form
+   */
   clearForm(): void {
     this.postForm.reset();
   }
 
+  /**
+   * Initialize post form
+   */
   initializePostForm(): void {
     this.postForm = new FormGroup({
       'name': new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z].*[\s\.]*$')]),
@@ -37,15 +41,22 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  /**
+   * Back to main page
+   */
   onMain(): void {
-    this.router.navigate(['/posts/']);
+    this.router.navigate(['/']);
   }
 
+  /**
+   * Save post
+   */
   onSubmit(): void {
     if (this.postForm.valid) {
+      const post = this.postForm.value;
       this.isProcessingRequest = true;
-      this.dataService.createPost(this.postForm.value).subscribe(res => {
-        this.router.navigate(['/posts/']);
+      this.postsStore.addPost(post).subscribe(res => {
+        this.router.navigate(['/']);
         this.isProcessingRequest = false;
       });
     }
