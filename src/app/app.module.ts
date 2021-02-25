@@ -8,6 +8,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PostsRoutingModule } from './posts/posts-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PostsRoutingModule } from './posts/posts-routing.module';
     CommonModule,
     HttpClientModule,
     PostsRoutingModule,
+    ReactiveFormsModule,
     ModalModule.forRoot()
   ],
   providers: [],

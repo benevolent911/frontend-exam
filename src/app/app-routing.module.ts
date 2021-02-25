@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'posts',
-    loadChildren: './posts/posts.module#PostsModule'
+    path: '',
+    loadChildren: './posts/posts.module#PostsModule',
+    pathMatch: 'full'
   },
   {
     path: '**',
