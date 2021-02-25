@@ -1,6 +1,7 @@
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from "@angular/core";
 import { map, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 import { DataService } from './data.service';
 import { Post } from './../shared/models/post.model';
@@ -13,7 +14,8 @@ export class PostsStore {
   private subject = new BehaviorSubject<Post[]>([]);
   posts$: Observable<Post[]> = this.subject.asObservable();
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,
+              private toastr: ToastrService) {
               this.loadPosts();
   }
 
@@ -28,6 +30,7 @@ export class PostsStore {
         const newPosts = [...posts, res];
 
         this.subject.next(newPosts);
+        this.toastr.success('Post added!', 'Public Blog');
       })
     );
   }
@@ -41,6 +44,7 @@ export class PostsStore {
     const newPosts = posts.filter(post => post.id !== postId);
 
     this.subject.next(newPosts);
+    this.toastr.info('Post deleted!', 'Public Blog');
 
     return this.dataService.deletePost(postId);
   }
@@ -85,6 +89,7 @@ export class PostsStore {
     newCourses[postIndex] = newCourse;
     
     this.subject.next(newCourses);
+    this.toastr.success('Post updated!', 'Public Blog');
 
     return this.dataService.savePost(changes);
   }
