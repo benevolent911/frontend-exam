@@ -1,5 +1,6 @@
-.navbar-inverse .navbar-nav > .active > a {
+.active-link {
   background-color: #8f7760 !important;
+  color: #fff !important;
 }
 
 .navbar-right {

@@ -6,19 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { HeaderComponent } from './../shared/header/header.component';
-import { PostResolver } from './../resolvers/post.resolver';
 import { PostsComponent } from './posts.component';
+import { PostResolver } from '../resolvers/post.resolver';
 
 const postsRoutes: Routes = [
   {
     path: '',
-    component: PostsComponent,
-    resolve: {
-      posts: PostResolver
-    },
+    component: PostsComponent    
   },
   {
-    path: ':id/edit',
+    path: 'posts/:id/edit',
     pathMatch: 'full',
     component: EditComponent,
     resolve: {
@@ -26,7 +23,7 @@ const postsRoutes: Routes = [
     },
   },
   {
-    path: 'create',
+    path: 'posts/create',
     pathMatch: 'full',
     component: CreateComponent
   }
