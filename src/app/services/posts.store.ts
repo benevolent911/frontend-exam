@@ -44,7 +44,7 @@ export class PostsStore {
     const newPosts = posts.filter(post => post.id !== postId);
 
     this.subject.next(newPosts);
-    this.toastr.info('Post deleted!', 'Public Blog');
+    this.toastr.warning('Post deleted!', 'Public Blog');
 
     return this.dataService.deletePost(postId);
   }
