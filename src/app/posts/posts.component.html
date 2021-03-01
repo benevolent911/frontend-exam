@@ -4,8 +4,8 @@
     <h1 class="blog-title">Public Blog</h1>
   </div>
   <div class="row">
-    <div class="col-sm-8 blog-main">
-      <ng-container *ngIf="(posts$ | async) as posts">
+    <ng-container *ngIf="(posts$ | async) as posts; else loading">
+      <div class="col-sm-8 blog-main">
         <div class="blog-post" *ngFor="let post of posts;">
           <h2 class="blog-post-title">{{ post.title }}</h2>
           <p class="blog-post-meta">{{ post.created_at | date:'longDate' }} by {{ post.name }}</p>
@@ -14,7 +14,12 @@
             Edit Post
           </button>
         </div>
-      </ng-container>
-    </div>
+      </div>        
+    </ng-container>
+    <ng-template #loading>
+      <div class="center-block text-center">
+        <span><h1><i class="fa fa-spinner fa-spin"></i></h1></span>
+      </div>
+    </ng-template>
   </div>
 </div>
