@@ -11,7 +11,7 @@ import { Post } from './../shared/models/post.model';
 })
 export class PostsStore {
 
-  private subject = new BehaviorSubject<Post[]>([]);
+  private subject = new BehaviorSubject<Post[]>(null);
   posts$: Observable<Post[]> = this.subject.asObservable();
 
   constructor(private dataService: DataService,
